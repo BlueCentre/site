@@ -1,0 +1,48 @@
+name: Build and Deploy Jekyll Site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Or your default branch
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read # To read the repository contents
+      pages: write    # To deploy to GitHub Pages
+      id-token: write # To authenticate with GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }} # URL to the deployed site
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby and Bundler
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2' # Specify Ruby version consistent with local setup if possible
+          bundler-cache: true # Automatically runs bundle install and caches gems
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build with Jekyll
+        # Uses the official Jekyll GHA build action
+        # This action builds the site and stores it as an artifact
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./ # Root of the repository
+          destination: ./_site # Output directory for the built site
+
+      - name: Upload artifact
+        # Automatically uploads an artifact from the './_site' directory by default
+        uses: actions/upload-pages-artifact@v3
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        # This action will automatically deploy the artifact uploaded in the previous step
+        # to the gh-pages branch or the configured GitHub Pages environment.
