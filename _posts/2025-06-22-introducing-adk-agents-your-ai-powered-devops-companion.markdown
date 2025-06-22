@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Introducing ADK Agents: Your AI-Powered DevOps Companion"
-date: 2025-01-10 09:00:00 +0000
+date: 2025-06-22 01:00:00 +0000
 categories: ai devops agents productivity
 author: "Vitruvian Software Team"
 excerpt: "Meet ADK Agents - the intelligent DevOps assistant that understands your codebase, executes commands safely, and helps you ship better software faster. Built on Google's ADK framework with developer productivity at its core."
@@ -137,7 +137,11 @@ Would you like me to implement these improvements?
 ## 🎯 Get Started in Minutes
 
 ```bash
-# Install with uv (recommended)
+# Use trunk version with uvx (recommended)
+export GOOGLE_API_KEY=YOUR_AI_STUDIO_API_TOKEN
+uvx --refresh --from git+https://github.com/BlueCentre/adk-agents.git@main agent run agents.devops.agent
+
+# Install with uv
 uv pip install adk-agents
 
 # Or use pip
@@ -147,18 +151,22 @@ pip install adk-agents
 echo "Help me understand this codebase" | uv run agent run agents.devops
 
 # For interactive mode
-adk run agents.devops
+uv run agent run agents.devops
+
+# For web mode
+uv run agent web-packaged --host 0.0.0.0 --session_db_url "sqlite:///sessions.db"
 ```
 
 ### **Minimal Configuration**
 Create a simple `.env` file:
 ```bash
 # Basic setup - just add your API key
-GEMINI_API_KEY=your_key_here
+GOOGLE_API_KEY=your_key_here
 
 # Advanced users can customize further
-DEVOPS_AGENT_MAX_TOKENS=32000
-DEVOPS_AGENT_OBSERVABILITY_ENABLE=false  # Clean output by default
+GEMINI_THINKING_ENABLE=true
+GEMINI_THINKING_INCLUDE_THOUGHTS=true
+GEMINI_THINKING_BUDGET=8192
 ```
 
 ## 🌟 Why Developers Love ADK Agents
