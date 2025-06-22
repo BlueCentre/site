@@ -4,7 +4,7 @@ layout: home
 
 ## About Us
 
-BlueCentre is dedicated to creating innovative open-source solutions. We specialize in AI, DevOps, and cloud technologies, focusing on building tools and frameworks that empower developers and researchers.
+Vitruvian Software Open Source is dedicated to creating innovative open-source solutions. We specialize in AI, DevOps, and cloud technologies, focusing on building tools and frameworks that empower developers and researchers.
 
 ## Our Most Active Projects
 
