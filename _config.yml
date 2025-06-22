@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: BlueCentre Open Source
+title: Vitruvian Software Open Source
 email: git@nocentre.net
 description: >- # this means to ignore newlines until "baseurl:"
   BlueCentre is dedicated to creating innovative open-source solutions.
