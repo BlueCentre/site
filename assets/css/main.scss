@@ -1,0 +1,88 @@
+---
+# Only a front matter (dash-es) are required for Jekyll to process this file.
+# If a file contains front matter, it will be processed by Jekyll.
+---
+
+// Import Minima's default styles.
+@import "minima";
+
+// Dark Theme Overrides & Modern Styling
+body {
+  background-color: #1a1a1a; // Very dark gray, almost black
+  color: #e0e0e0; // Light gray for text
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff; // White for headings
+  font-weight: 600;
+}
+
+a {
+  color: #4dabf7; // A vibrant blue for links
+  text-decoration: none;
+}
+
+a:hover {
+  color: #2c8ce4; // Darker blue for hover
+  text-decoration: underline;
+}
+
+.site-header {
+  background-color: #111111; // Slightly darker than body for header
+  border-bottom-color: #333333;
+}
+
+.site-title, .site-title:visited {
+  color: #ffffff;
+}
+
+.site-nav .page-link {
+  color: #c0c0c0; // Lighter gray for nav links
+}
+
+.site-nav .page-link:hover {
+  color: #ffffff;
+}
+
+// Basic card styling for future project/blog lists
+.card {
+  background-color: #252525;
+  border: 1px solid #383838;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+// Footer styling
+.site-footer {
+  border-top-color: #333333;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+// More modern button styling (placeholder, can be applied to elements)
+.button, button, input[type="submit"], input[type="button"] {
+  background-color: #4dabf7;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button:hover, button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+  background-color: #2c8ce4;
+}
+
+// Try to ensure the logo (avatar) is styled appropriately for dark theme if it has a light background
+.site-avatar img {
+  // If logo has a light background and looks bad, uncomment and adjust:
+  // background-color: #f0f0f0; // Or some other light color if needed
+  // border-radius: 50%; // If you want a circular avatar
+  // padding: 3px; // Optional padding around logo
+}
