@@ -6,83 +6,453 @@
 // Import Minima's default styles.
 @import "minima";
 
-// Dark Theme Overrides & Modern Styling
-body {
-  background-color: #1a1a1a; // Very dark gray, almost black
-  color: #e0e0e0; // Light gray for text
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  line-height: 1.6;
+// Modern CSS Custom Properties for Dark Theme
+:root {
+  --primary-bg: #0a0a0a;
+  --secondary-bg: #111111;
+  --card-bg: #1a1a1a;
+  --accent-bg: #252525;
+  --primary-text: #ffffff;
+  --secondary-text: #b3b3b3;
+  --accent-text: #e0e0e0;
+  --primary-accent: #3b82f6;
+  --secondary-accent: #06b6d4;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --border-color: #333333;
+  --shadow: rgba(0, 0, 0, 0.5);
+  --border-radius: 12px;
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-tertiary: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
 
+// Reset and Base Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--primary-bg);
+  color: var(--primary-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
+}
+
+// Background Logo Accent
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/logo-dark.jpeg');
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
+  background-position: 95% 5%;
+  opacity: 0.03;
+  z-index: -1;
+  pointer-events: none;
+}
+
+// Typography
 h1, h2, h3, h4, h5, h6 {
-  color: #ffffff; // White for headings
-  font-weight: 600;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--primary-text);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--primary-accent);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--secondary-text);
+  font-size: 1.1rem;
 }
 
 a {
-  color: #4dabf7; // A vibrant blue for links
+  color: var(--primary-accent);
   text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: var(--gradient-tertiary);
+  transition: width 0.3s ease;
+}
+
+a:hover::after {
+  width: 100%;
 }
 
 a:hover {
-  color: #2c8ce4; // Darker blue for hover
-  text-decoration: underline;
+  color: var(--secondary-accent);
+  transform: translateY(-1px);
 }
 
+// Layout
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+// Header
 .site-header {
-  background-color: #111111; // Slightly darker than body for header
-  border-bottom-color: #333333;
+  background: rgba(17, 17, 17, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
 }
 
-.site-title, .site-title:visited {
-  color: #ffffff;
+.site-header .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.site-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-text) !important;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.site-nav {
+  display: flex;
+  gap: 2rem;
 }
 
 .site-nav .page-link {
-  color: #c0c0c0; // Lighter gray for nav links
+  color: var(--secondary-text);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease;
 }
 
 .site-nav .page-link:hover {
-  color: #ffffff;
+  color: var(--primary-text);
+  background: var(--accent-bg);
+  transform: translateY(-2px);
 }
 
-// Basic card styling for future project/blog lists
+// Hero Section
+.hero {
+  padding: 6rem 0;
+  text-align: center;
+  position: relative;
+  background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  width: 300px;
+  height: 300px;
+  background-image: url('/images/logo-light.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.hero h1 {
+  margin-bottom: 1.5rem;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  color: var(--accent-text);
+}
+
+// Cards
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
 .card {
-  background-color: #252525;
-  border: 1px solid #383838;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-// Footer styling
-.site-footer {
-  border-top-color: #333333;
-  padding-top: 20px;
-  padding-bottom: 20px;
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
 }
 
-// More modern button styling (placeholder, can be applied to elements)
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px var(--shadow);
+  border-color: var(--primary-accent);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card h3 {
+  margin-bottom: 1rem;
+  color: var(--primary-text);
+}
+
+.card p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+// Buttons
 .button, button, input[type="submit"], input[type="button"] {
-  background-color: #4dabf7;
-  color: #ffffff;
+  background: var(--gradient-primary);
+  color: var(--primary-text);
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  font-size: 0.95rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.button:hover, button:hover, input[type="submit"]:hover, input[type="button"]:hover {
-  background-color: #2c8ce4;
+.button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
 }
 
-// Try to ensure the logo (avatar) is styled appropriately for dark theme if it has a light background
-.site-avatar img {
-  // If logo has a light background and looks bad, uncomment and adjust:
-  // background-color: #f0f0f0; // Or some other light color if needed
-  // border-radius: 50%; // If you want a circular avatar
-  // padding: 3px; // Optional padding around logo
+.button:hover::before {
+  left: 100%;
 }
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+// Content Sections
+.content-section {
+  padding: 4rem 0;
+}
+
+.content-section:nth-child(even) {
+  background: var(--secondary-bg);
+}
+
+// Footer
+.site-footer {
+  background: var(--secondary-bg);
+  border-top: 1px solid var(--border-color);
+  padding: 3rem 0 2rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+  color: var(--primary-text);
+  margin-bottom: 1rem;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+  color: var(--secondary-text);
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: var(--primary-accent);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+  text-align: center;
+  color: var(--secondary-text);
+  font-size: 0.9rem;
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 0 1rem;
+  }
+  
+  .site-header .wrapper {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .site-nav {
+    gap: 1rem;
+  }
+  
+  .hero {
+    padding: 4rem 0;
+  }
+  
+  .hero::after {
+    display: none;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .site-nav .page-link {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+// Animation Utilities
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+// Page-specific styles
+.page-content {
+  margin-top: 2rem;
+}
+
+.post-content, .page-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+// Code blocks
+code {
+  background: var(--accent-bg);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--primary-accent);
+}
+
+pre {
+  background: var(--accent-bg);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+// Utility classes
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
