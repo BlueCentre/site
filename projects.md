@@ -60,7 +60,7 @@ Below are some of our key projects. For a full list, please visit our [GitHub Or
 
 <div class="card">
   <h3><a href="https://github.com/BlueCentre/terraform-workspace">terraform-workspace</a></h3>
-  <p>A workspace setup for Terraform projects. (Unknown primary language from overview)</p>
+  <p>A workspace setup for Terraform projects. (HCL)</p>
   <p><a href="https://github.com/BlueCentre/terraform-workspace" class="button">View on GitHub</a></p>
 </div>
 
