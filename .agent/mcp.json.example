@@ -1,0 +1,68 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "rust-mcp-filesystem",
+      "args": [
+        "--allow-write",
+        "{{env.MCP_ALLOWED_DIRECTORIES}}"
+      ]
+    },
+    "gitmcp-adk": {
+      "url": "https://gitmcp.io/google/adk-python"
+    },
+    "gitmcp-genai": {
+      "url": "https://gitmcp.io/googleapis/python-genai"
+    },
+    "mcp-docs": {
+      "url": "https://modelcontextprotocol.io/llms-full.txt"
+    },
+    "atlassian": {
+      "command": "uvx",
+      "args": [
+        "mcp-atlassian",
+        "--confluence-url={{env.CONFLUENCE_URL}}",
+        "--confluence-username={{env.CONFLUENCE_USERNAME}}",
+        "--confluence-token={{env.CONFLUENCE_TOKEN}}",
+        "--jira-url={{env.JIRA_URL}}",
+        "--jira-username={{env.JIRA_USERNAME}}",
+        "--jira-token={{env.JIRA_TOKEN}}"
+      ]
+    },
+    "sonarqube": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "sonarqube-mcp-server@1.0.0"
+      ],
+      "env": {
+        "SONARQUBE_URL": "https://sonarcloud.io",
+        "SONARQUBE_TOKEN": "{{env.SONAR_TOKEN}}",
+        "SONARQUBE_ORGANIZATION": "{{env.SONAR_ORGANIZATION}}"
+      }
+    },
+    "datadog": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@winor30/mcp-server-datadog"
+      ],
+      "env": {
+        "DATADOG_API_KEY": "{{env.DATADOG_API_KEY}}",
+        "DATADOG_APP_KEY": "{{env.DATADOG_APP_KEY}}"
+      }
+    },
+    "grafana": {
+      "command": "mcp-grafana",
+      "args": [],
+      "env": {
+        "GRAFANA_URL": "http://localhost:3000",
+        "GRAFANA_API_KEY": "<your service account token>"
+      }
+    },
+    "custom-noisy-server": {
+      "command": "my-custom-mcp-server",
+      "args": ["--verbose"],
+      "suppress_output": true
+    }
+  }
+}

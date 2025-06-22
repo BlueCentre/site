@@ -30,7 +30,7 @@ twitter_username: ipv1337 # Placeholder, replace if actual exists
 github_username:  BlueCentre # Placeholder, replace with actual org/user
 
 # Build settings
-theme: minima
+# theme: minima  # Disabled to use custom dark theme
 header_pages:
   - projects.md
   - tech-stack.md

@@ -1,0 +1,43 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "{{env.MCP_ALLOWED_DIRECTORIES}}"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "env": {
+        "MEMORY_FILE_PATH": "/Users/james/Workspace/gh/lab/adk-agents/.agent/memory.json"
+      }
+    },
+    "sonarqube": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "sonarqube-mcp-server@latest"
+      ],
+      "env": {
+        "SONARQUBE_URL": "https://sonarcloud.io",
+        "SONARQUBE_TOKEN": "{{env.SONAR_TOKEN}}",
+        "SONARQUBE_ORGANIZATION": "{{env.SONAR_ORGANIZATION}}"
+      }
+    },
+    "datadog": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@winor30/mcp-server-datadog"
+      ],
+      "env": {
+        "DATADOG_API_KEY": "{{env.DATADOG_API_KEY}}",
+        "DATADOG_APP_KEY": "{{env.DATADOG_APP_KEY}}"
+      },
+      "suppress_output": true
+    }
+  }
+}

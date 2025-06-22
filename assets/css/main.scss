@@ -1,12 +1,7 @@
 ---
-# Only a front matter (dash-es) are required for Jekyll to process this file.
-# If a file contains front matter, it will be processed by Jekyll.
 ---
 
-// Import Minima's default styles.
-@import "minima";
-
-// Modern CSS Custom Properties for Dark Theme
+// Modern Dark Theme CSS Custom Properties
 :root {
   --primary-bg: #0a0a0a;
   --secondary-bg: #111111;
@@ -28,7 +23,7 @@
   --gradient-tertiary: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
 
-// Reset and Base Styles
+// Reset and Base Styles with !important to override minima
 * {
   margin: 0;
   padding: 0;
@@ -40,10 +35,10 @@ html {
 }
 
 body {
-  background: var(--primary-bg);
-  color: var(--primary-text);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  line-height: 1.7;
+  background: var(--primary-bg) !important;
+  color: var(--primary-text) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  line-height: 1.7 !important;
   overflow-x: hidden;
   position: relative;
 }
@@ -65,17 +60,17 @@ body::before {
   pointer-events: none;
 }
 
-// Typography
+// Typography with !important to override minima
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
   margin-top: 0;
   margin-bottom: 1rem;
-  color: var(--primary-text);
+  color: var(--primary-text) !important;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.5rem, 5vw, 4rem) !important;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -83,23 +78,23 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  color: var(--primary-accent);
+  font-size: clamp(2rem, 4vw, 3rem) !important;
+  color: var(--primary-accent) !important;
 }
 
 h3 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.5rem, 3vw, 2rem) !important;
 }
 
 p {
   margin-bottom: 1rem;
-  color: var(--secondary-text);
-  font-size: 1.1rem;
+  color: var(--secondary-text) !important;
+  font-size: 1.1rem !important;
 }
 
 a {
-  color: var(--primary-accent);
-  text-decoration: none;
+  color: var(--primary-accent) !important;
+  text-decoration: none !important;
   transition: all 0.3s ease;
   position: relative;
 }
@@ -120,7 +115,7 @@ a:hover::after {
 }
 
 a:hover {
-  color: var(--secondary-accent);
+  color: var(--secondary-accent) !important;
   transform: translateY(-1px);
 }
 
@@ -131,11 +126,11 @@ a:hover {
   padding: 0 2rem;
 }
 
-// Header
+// Header with !important to override minima
 .site-header {
-  background: rgba(17, 17, 17, 0.95);
+  background: rgba(17, 17, 17, 0.95) !important;
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color) !important;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -149,9 +144,9 @@ a:hover {
   padding: 1rem 2rem;
 }
 
-.site-title {
-  font-size: 1.5rem;
-  font-weight: 700;
+.site-title, .site-title:visited {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
   color: var(--primary-text) !important;
   display: flex;
   align-items: center;
@@ -164,17 +159,58 @@ a:hover {
 }
 
 .site-nav .page-link {
-  color: var(--secondary-text);
-  font-weight: 500;
+  color: var(--secondary-text) !important;
+  font-weight: 500 !important;
   padding: 0.5rem 1rem;
   border-radius: var(--border-radius);
   transition: all 0.3s ease;
 }
 
 .site-nav .page-link:hover {
-  color: var(--primary-text);
-  background: var(--accent-bg);
+  color: var(--primary-text) !important;
+  background: var(--accent-bg) !important;
   transform: translateY(-2px);
+}
+
+// Mobile navigation
+.nav-trigger {
+  display: none;
+}
+
+.menu-icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .menu-icon {
+    display: block;
+    float: right;
+    width: 36px;
+    height: 26px;
+    line-height: 0;
+    padding-top: 10px;
+    text-align: center;
+  }
+
+  .menu-icon > svg {
+    fill: var(--primary-text);
+  }
+
+  .nav-trigger:checked ~ .trigger {
+    display: block;
+    padding-bottom: 5px;
+  }
+
+  .trigger {
+    clear: both;
+    display: none;
+  }
+
+  .site-nav .page-link {
+    display: block;
+    padding: 5px 10px;
+    margin-left: 20px;
+  }
 }
 
 // Hero Section
@@ -206,10 +242,10 @@ a:hover {
 }
 
 .hero p {
-  font-size: 1.25rem;
+  font-size: 1.25rem !important;
   max-width: 600px;
   margin: 0 auto 2rem;
-  color: var(--accent-text);
+  color: var(--accent-text) !important;
 }
 
 // Cards
@@ -221,8 +257,8 @@ a:hover {
 }
 
 .card {
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
+  background: var(--card-bg) !important;
+  border: 1px solid var(--border-color) !important;
   border-radius: var(--border-radius);
   padding: 2rem;
   transition: all 0.3s ease;
@@ -244,8 +280,8 @@ a:hover {
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px var(--shadow);
-  border-color: var(--primary-accent);
+  box-shadow: 0 20px 40px var(--shadow) !important;
+  border-color: var(--primary-accent) !important;
 }
 
 .card:hover::before {
@@ -254,7 +290,7 @@ a:hover {
 
 .card h3 {
   margin-bottom: 1rem;
-  color: var(--primary-text);
+  color: var(--primary-text) !important;
 }
 
 .card p {
@@ -264,16 +300,16 @@ a:hover {
 
 // Buttons
 .button, button, input[type="submit"], input[type="button"] {
-  background: var(--gradient-primary);
-  color: var(--primary-text);
-  border: none;
+  background: var(--gradient-primary) !important;
+  color: var(--primary-text) !important;
+  border: none !important;
   padding: 0.75rem 1.5rem;
   border-radius: var(--border-radius);
-  font-weight: 600;
+  font-weight: 600 !important;
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-block;
-  text-decoration: none;
+  text-decoration: none !important;
   font-size: 0.95rem;
   position: relative;
   overflow: hidden;
@@ -308,10 +344,10 @@ a:hover {
   background: var(--secondary-bg);
 }
 
-// Footer
+// Footer with !important to override minima
 .site-footer {
-  background: var(--secondary-bg);
-  border-top: 1px solid var(--border-color);
+  background: var(--secondary-bg) !important;
+  border-top: 1px solid var(--border-color) !important;
   padding: 3rem 0 2rem;
   margin-top: 4rem;
 }
@@ -324,7 +360,7 @@ a:hover {
 }
 
 .footer-section h4 {
-  color: var(--primary-text);
+  color: var(--primary-text) !important;
   margin-bottom: 1rem;
 }
 
@@ -337,19 +373,19 @@ a:hover {
 }
 
 .footer-section a {
-  color: var(--secondary-text);
+  color: var(--secondary-text) !important;
   transition: color 0.3s ease;
 }
 
 .footer-section a:hover {
-  color: var(--primary-accent);
+  color: var(--primary-accent) !important;
 }
 
 .footer-bottom {
   border-top: 1px solid var(--border-color);
   padding-top: 1rem;
   text-align: center;
-  color: var(--secondary-text);
+  color: var(--secondary-text) !important;
   font-size: 0.9rem;
 }
 
@@ -426,15 +462,15 @@ a:hover {
 
 // Code blocks
 code {
-  background: var(--accent-bg);
+  background: var(--accent-bg) !important;
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
   font-size: 0.9em;
-  color: var(--primary-accent);
+  color: var(--primary-accent) !important;
 }
 
 pre {
-  background: var(--accent-bg);
+  background: var(--accent-bg) !important;
   padding: 1rem;
   border-radius: var(--border-radius);
   overflow-x: auto;
@@ -442,7 +478,7 @@ pre {
 }
 
 pre code {
-  background: none;
+  background: none !important;
   padding: 0;
 }
 
