@@ -38,6 +38,7 @@ header_pages:
   - blog.md
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
 
 # Modern website enhancements
 google_fonts:
